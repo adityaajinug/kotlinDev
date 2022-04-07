@@ -16,28 +16,28 @@ class Sayur(vararg val tambahan:String) : Item("Sayur", 5) {
 }
 class Order(val orderNumber: Int) {
     private val itemList = mutableListOf<Item>()
-}
-fun addItem(newItem:Item) : Order {
-    itemList.add(newItem)
-    return this
+    fun addItem(newItem:Item) {
+        itemList.add(newItem)
 
-}
-fun addAll(newItem: List<Item>):Order {
-    itemList.addAll(newItem)
-    return this
-}
-fun print() {
-    println("Order #${orderNumber}")
-    var total = 0
-    for (item in itemList) {
-        println("${item}: Rp.${item.price}")
-        total += item.price
+
     }
-    println("Total: Rp.${total}")
+    fun addAll(newItem: List<Item>) {
+        itemList.addAll(newItem)
 
+    }
+    fun print() {
+        println("Order #${orderNumber}")
+        var total = 0
+        for (item in itemList) {
+            println("${item}: Rp.${item.price}")
+            total += item.price
+        }
+        println("Total: Rp.${total}")
+
+    }
 }
+
 fun main() {
-    val orderList = mutableListOf<Order>()
     val order1 =  Order(1)
     order1.addItem(Mie())
     order1.print()
@@ -58,6 +58,6 @@ fun main() {
 
     val order3 = Order(3)
     val item = listOf(Mie(), Sayur("Wortel", "Bawang Goreng", "Garam"))
-    order3.allItem(item)
+    order3.addAll(item)
     order3.print()
 }
